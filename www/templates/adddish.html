@@ -1,0 +1,49 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Add a dish</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeAdd()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="createDish()">
+      <div class="list">
+       <label class="item">
+       <span class="input-label">Picture</span>
+       </label>
+       <label class="item">
+       <img class="padding" ng-src="'{{baseURL}}uploads/dishes/myDish.jpg'">
+       </label>
+      
+        <label class="item">
+        <button class="button button-block button-balanced" type="button" ng-click="openGallery()">
+            Gallery
+        </button>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Name</span>
+          <input type="text" id="dishname" placeholder="Dish's name..." ng-model=newDish.name>
+        </label>
+         <label class="item item-input">
+          <span class="input-label">Cuisine</span>
+          <input type="text" id="cuisine" placeholder="Cuisine.. eg. Italian, Greek, Indian etc" ng-model=newDish.cuisine>
+        </label>
+         <label class="item item-input">
+          <span class="input-label">Price</span>
+          <input type="text" id="price"  placeholder="Price" ng-model=newDish.price>
+        </label>
+       <label class="item item-input">
+          <span class="input-label">Allergy</span>
+          <input type="text" id="allergy" placeholder="Allergy Advice..." ng-model=newDish.allergy>
+        </label>
+       <label class="item item-input">
+          <span class="input-label">About</span>
+          <textarea id="dishdetail" class="form-control" rows="5" ng-model=newDish.description> </textarea>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Add my dish</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

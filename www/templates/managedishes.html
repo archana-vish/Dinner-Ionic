@@ -1,0 +1,27 @@
+<ion-view view-title="My Dishes">
+  <ion-content>
+        <ion-list>
+            <ion-item class="list card" ng-repeat="dish in dishes">
+              <div class="item item-avatar">
+                  <img src="{{baseURL}}uploads/profile/logo.png">
+                  <h2>{{dish.name}}</h2>
+                  <h4>By chef {{dish.chef.firstname}}</h4>
+              </div>
+              <div class="item item-body">
+                  <a href="#/app/managedishes/{{dish._id}}"> 
+                    <img class="full-image" src="{{baseURL+dish.image}}">
+                  </a>
+                <p>
+                  {{dish.description}}
+                </p>
+                <div class="button-bar">
+                    <a class="button button-small icon-left ion-android-add-circle button-balanced" ng-click="addToMenu(dish.chef._id, dish._id)">Menu</a>
+                    <a class="button button-small icon-left ion-edit button-calm">Edit </a>
+                    <a class="button button-small icon-left icon ion-star button-energized" href="#/app/managedishes/{{dish._id}}">More</a>
+                </div>
+                <span class="badge badge-assertive">{{dish.price|currency}}</span>
+              </div>
+            </ion-item>
+      </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,47 @@
+<ion-view view-title="Manage your Orders">
+  <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="order in orders | orderBy: '-id' | filter : {status : '!basket'} | filter: sortby">
+                <div class="item item-avatar">
+                  <img src="{{baseURL}}uploads/profile/logo.png">
+                  <h2>{{order.customer.firstname}}</h2>
+                  <small>(Mob: {{order.customer.phone}})</small>
+                  <span class="badge badge-assertive" align="right">£{{total}}</span>
+                </div>
+              
+                <div class="list" >
+                    <div ng-repeat="dishordered in order.dishes track by $index">
+                    <div class="item item-thumbnail-left">
+                      <img src="{{baseURL+dishordered.dish.image}}">
+                      <h2>{{dishordered.dish.name}}</h2>
+                      <p>Numbers ({{dishordered.quantity}})</p>
+                      <p> Total: £{{itemTotal}}</p>
+                      <span class="item-note" ng-init="itemTotal = dishordered.dish.price * dishordered.quantity; $parent.total = $parent.total + itemTotal"> </span>
+                    </div>
+                    </div>
+                </div>
+              </div> 
+              <div>
+                <div class="button-bar">
+                    <a type="button" class="button button-block icon ion-android-call button-positive" href="tel:{{order.customer.phone}}">Call</a>
+                    <button ng-if="order.status == 'new'" class="button button-energized button-block icon ion-android-notifications" ng-click="updateOrder(order._id, order, 'wip');">
+                       Accept Order
+                    </button>
+                    <button  ng-if="order.status == 'wip'" class="button button-calm button-block icon  ion-android-restaurant" ng-click="updateOrder(order._id, order, 'done');">
+                        In the kitchen
+                    </button>
+                    <button  ng-if="order.status == 'done'" class="button button-calm button-block icon ion-thumbsup" ng-click="updateOrder(order._id, order, 'ready');">
+                        Ready for pickup
+                    </button>
+                    <button ng-if="order.status == 'ready'" class="button button-balanced button-block icon ion-happy-outline" ng-click="updateOrder(order._id, order, 'closed');">
+                        Order delivered
+                    </button>
+                    <button ng-if="order.status == 'closed'" class="button button-energized button-block icon ion-ios-cart" ng-click="updateOrder(order._id, order, 'new');">
+                        New Order
+                    </button>
+                </div>
+             </div>
+         </ion-item>
+      </ion-list>
+  </ion-content>
+</ion-view>
